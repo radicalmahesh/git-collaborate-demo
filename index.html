@@ -22,7 +22,7 @@
     }
 
     body {
-        padding: 5rem 1rem;
+        padding: 5rem 2rem;
 
         display: flex;
         flex-direction: column;
@@ -37,12 +37,10 @@
 
 
     h1 {
-        font-size: 4rem;
+        font-size: 3rem;
         text-align: center;
 
     }
-
-
 
     .grid {
         display: grid;
@@ -73,12 +71,12 @@
     }
 
     .grid div pre {
-        font-size: 1.75rem;
+        font-size: 1.25rem;
         font-weight: 800;
         text-align: center;
     }
 
-    @media screen and (max-width: 340px) {
+    @media screen and (min-width: 340px) {
         .grid {
             grid-template-columns: repeat(1, auto);
         }
