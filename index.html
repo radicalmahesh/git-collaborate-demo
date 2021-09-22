@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Demo</title>
+</head>
+
+<style>
+    * {
+        font-family: "Poppins", sans-serif;
+
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        padding: 5rem 1rem;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 5rem;
+
+        background: #fafafa;
+    }
+
+
+    h1 {
+        font-size: 4rem;
+        text-align: center;
+
+    }
+
+
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 2rem;
+
+        width: 100%;
+    }
+
+    .grid div {
+        display: grid;
+        place-items: center;
+
+        padding: 2rem;
+
+        border-radius: 2rem;
+
+        transition: all ease-in-out 300ms;
+    }
+
+    .grid div:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        /* box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15); */
+    }
+
+    .grid div pre {
+        font-size: 1.75rem;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 340px) {
+        .grid {
+            grid-template-columns: repeat(1, auto);
+        }
+    }
+
+    @media screen and (min-width: 576px) {
+        .grid {
+            grid-template-columns: repeat(2, auto);
+        }
+    }
+
+    @media screen and (min-width: 767px) {
+        .grid {
+            grid-template-columns: repeat(3, auto);
+        }
+    }
+</style>
+
+<body>
+
+    <header>
+        <h1>Contributed by
+        </h1>
+    </header>
+
+    <div class="grid" id="name-grid">
+
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.4.4/randomColor.min.js'></script>
+
+    <script>
+        const grid = document.getElementById("name-grid");
+
+        const renderNames = (names) => names.forEach(e => {
+            let div = document.createElement('div')
+
+            // Color Background Color
+            if (e.color && e.backgroundColor)
+                div.style.cssText += `color:${e.color};background:${e.backgroundColor};`
+            else if (e.color)
+                div.style.cssText += `color:${e.color}`
+            else if (e.backgroundColor)
+                div.style.cssText += `background-color:${e.backgroundColor}`
+            else
+                div.style.cssText += `background:white;color:black;`
+
+            div.innerHTML = `<pre>${e.name}</pre>`;
+            grid.appendChild(div);
+        });
+
+        fetch('names.json').then((res) => res.json()).then((data) => renderNames(data))
+    </script>
+
+</body>
+
+</html>
